@@ -1,5 +1,9 @@
 Revision history for Sub-MicroSig
 
-0.01    Date/time
+0.03    2006-03-14
+        added MethodSig for methods with signatures
+        fixed typo on synopsis (thanks, CWEST)
+
+0.01    2005-12-22
         First version, released on an unsuspecting world.
 
