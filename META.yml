@@ -1,13 +1,13 @@
 --- #YAML:1.0
 name:                Sub-MicroSig
-version:             0.031
+version:             0.032
 abstract:            microsigs for microvalidation of sub arguments
 license:             perl
-generated_by:        ExtUtils::MakeMaker version 6.31
+generated_by:        ExtUtils::MakeMaker version 6.32
 distribution_type:   module
 requires:     
     Hook::LexWrap:                 0
-    Params::Validate::Micro:       0.02
+    Params::Validate::Micro:       0.031
     Sub::Identify:                 0
     Test::More:                    0
 meta-spec:
