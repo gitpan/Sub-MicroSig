@@ -1,14 +1,16 @@
 Changes
+LICENSE
 MANIFEST
+META.json
+META.yml
 Makefile.PL
 README
+dist.ini
 lib/Sub/MicroSig.pm
-t/00-load.t
+t/00-compile.t
+t/000-report-versions-tiny.t
 t/basic.t
 t/method.t
-t/pod-coverage.t
-t/pod.t
 t/typed.t
-t/perl-critic.t
-LICENSE
-META.yml                                 Module meta-data (added by MakeMaker)
+xt/release/changes_has_content.t
+xt/release/pod-syntax.t

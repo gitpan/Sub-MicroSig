@@ -1,20 +1,77 @@
+
 use strict;
 use warnings;
-use ExtUtils::MakeMaker;
 
-WriteMakefile(
-    NAME                => 'Sub::MicroSig',
-    AUTHOR              => 'Ricardo Signes <rjbs@cpan.org>',
-    VERSION_FROM        => 'lib/Sub/MicroSig.pm',
-    ABSTRACT_FROM       => 'lib/Sub/MicroSig.pm',
-    LICENSE             => 'perl',
-    PL_FILES            => {},
-    PREREQ_PM => {
-        'Hook::LexWrap' => 0,
-        'Sub::Identify' => 0,
-        'Test::More'    => 0,
-        'Params::Validate::Micro' => 0.031, # bug in positional validation
-    },
-    dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean               => { FILES => 'Sub-MicroSig-* cover_db' },
+
+
+use ExtUtils::MakeMaker 6.30;
+
+
+
+my %WriteMakefileArgs = (
+  "ABSTRACT" => "microsigs for microvalidation of sub arguments",
+  "AUTHOR" => "Ricardo SIGNES <rjbs\@cpan.org>",
+  "BUILD_REQUIRES" => {},
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
+  },
+  "DISTNAME" => "Sub-MicroSig",
+  "EXE_FILES" => [],
+  "LICENSE" => "perl",
+  "NAME" => "Sub::MicroSig",
+  "PREREQ_PM" => {
+    "Carp" => 0,
+    "Exporter" => "5.57",
+    "Hook::LexWrap" => 0,
+    "Params::Validate::Micro" => "0.031",
+    "Sub::Identify" => 0,
+    "base" => 0,
+    "strict" => 0,
+    "warnings" => 0
+  },
+  "TEST_REQUIRES" => {
+    "File::Spec" => 0,
+    "IO::Handle" => 0,
+    "IPC::Open3" => 0,
+    "Test::More" => "0.96"
+  },
+  "VERSION" => "0.033",
+  "test" => {
+    "TESTS" => "t/*.t"
+  }
 );
+
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
+  my $tr = delete $WriteMakefileArgs{TEST_REQUIRES};
+  my $br = $WriteMakefileArgs{BUILD_REQUIRES};
+  for my $mod ( keys %$tr ) {
+    if ( exists $br->{$mod} ) {
+      $br->{$mod} = $tr->{$mod} if $tr->{$mod} > $br->{$mod};
+    }
+    else {
+      $br->{$mod} = $tr->{$mod};
+    }
+  }
+}
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
+  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
+  my $pp = $WriteMakefileArgs{PREREQ_PM};
+  for my $mod ( keys %$br ) {
+    if ( exists $pp->{$mod} ) {
+      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
+    }
+    else {
+      $pp->{$mod} = $br->{$mod};
+    }
+  }
+}
+
+delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+
+WriteMakefile(%WriteMakefileArgs);
+
+
+

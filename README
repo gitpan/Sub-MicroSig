@@ -1,18 +1,13 @@
-Sub-MicroSig
 
-This module allows you to give subroutine a signature using
-L<Params::Validate::Micro>.
 
-  use Sub::MicroSig;
+This archive contains the distribution Sub-MicroSig,
+version 0.033:
 
-  sub pow :Sig($x $pow; $trunc) {
-    my $arg = shift;
-    my $value = $arg->{x} ** $arg->{pow};
+  microsigs for microvalidation of sub arguments
 
-    $value = int $value if $arg->{trunc};
-  }
-  
-  ...
+This software is copyright (c) 2005 by Ricardo SIGNES.
 
-  pow({ pow => 2, x => 4 }); # 64
-  pow([ 2, 0.5, 1 ]);        #  1 # int(sqrt(2))
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+
